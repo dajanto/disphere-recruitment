@@ -20,6 +20,19 @@ GraphQL
 	Der Service läuft typischerweise auf einer URL, es wird geprüft, ob die Anfrage den definierten Werten entspricht
 	Wenn alles glatt läuft, erhält man ein entsprechendes JSON-Result
 
+	Meinung:
+
+	- Mit modernen Frameworks können Data Fetching Probleme effizienter gelöst werden als mit der herkömmlichen REST-Architektur. 
+	- In dem einen Tutorial um eine Blogging-Website, wo jeweils Anfragen für User, Posts und Follower einzeln gestellt werden mussten, um die Daten anschließend zu verarbeiten.
+	- Bei GraphQL muss man für denselben Fall bloß nur eine Anfrage stellen und man kann genau spezifizieren, welche Daten returnt werden sollen.
+
+	Weitere Vorteile:
+		- Backend Statistiken können genau nutzerweise aufgestellt und analysiert werden
+		- Client-Side Changes sind ohne weitere Backend-Änderungen umsetzbar
+
+
+	SOAP (Protokoll) ist outdated, weil es z.B. nur mit XML umgehen kann, REST hat es weitestgehend abgelöst
+
 
 
 Angular
@@ -66,6 +79,8 @@ Angular
 
 
 	Output
+
+		// TODO
 
 		share() --> window.alert("foo")
 		onNotify() --> window.alert("bar")
