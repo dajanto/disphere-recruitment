@@ -1,0 +1,78 @@
+1. 
+
+GET
+
+	- Daten in der URL
+	- Gut geeignet für unsensible Daten (Wiederverwendbarkeit bei Bookmarks, Google Maps z.B.)
+
+POST
+
+	- Daten unsichtbar im HTTP-Request
+	- Gut geeignet für sensible Daten
+
+
+GraphQL
+
+	Query Language für POST-Anfragen an eine API
+
+	Mit einer Anfrage kann bestimmt werden, was genau an Daten returnt werden soll
+	Zuvor wird Serversided festgelegt, welches Type System genutzt wird
+	Der Service läuft typischerweise auf einer URL, es wird geprüft, ob die Anfrage den definierten Werten entspricht
+	Wenn alles glatt läuft, erhält man ein entsprechendes JSON-Result
+
+
+
+Angular
+
+	Frontend web framework for creating sophisticated apps
+
+	Tutorial 
+
+	Template
+		- Anhand eines Webshops wurden verschiedene Features gezeigt, die man in HTML Tags integrieren kann
+		- Produkte sollten angezeigt werden mit *ngFor im <div> (Iterate over predefined list)
+		- {{ product.name }} führte zum eigentlichen Anzeigen
+		- <a [title="foobar"] führte zum Mouseover Detailanzeigen
+		- <p *ngIf> mit {{product.description}}, dass eine Description angezeigt wird, wenn es eine gibt
+		- <button (click)="share()"> zum Erstellen eines Buttons zum Sharen von Informationen
+
+
+		Basics 
+			- *ngFor
+			- *ngIf
+			- Interpolation {{ }}
+			- Property Binding [ ]
+			- Event Binding ( )
+
+	Component		
+		- Component class (data and functionality (share()))
+		- Template class (UI stuff)
+		- Component specific styles (CSS stuff)
+
+
+	Der Webshop hat drei Komponenten
+		- app-root	
+		- app-top-bar
+		- app-product-list
+
+
+	Input
+
+		// TODO
+		
+		Neue Komponente wird erstellt (Mit selector, templates and styles)
+
+		Ein Produkt mit Wert ab 700 soll einen Notify Button erhalten
+
+
+	Output
+
+		share() --> window.alert("foo")
+		onNotify() --> window.alert("bar")
+
+	
+
+Lodash
+
+	Convenience JS framework for common programming tasks using functional programming paradigms
+
