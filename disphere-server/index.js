@@ -2,23 +2,23 @@ const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
 
-  type car {
+  type Car {
     brand: String
 	model: String
-    color: AllowedColor
+    color: AllowedColors
     enginepower: Int
     hasTrailHitch: Boolean
   }
 
-  enum AllowedColor {
+  enum AllowedColors {
 		RED
 		GREEN
 		BLUE
 	}
 
+// Query entry points
   type Query {
-	favoriteColor: AllowedColor
-    cars: [car]
+    cars: [Car]
   }
 `;
 
@@ -38,7 +38,15 @@ const cars = [
     enginepower: 300,
     hasTrailHitch: true
   },
+  {
+    brand: 'Fiat',
+	model: 'Panda',
+    color: 'GREEN',
+    enginepower: 50,
+    hasTrailHitch: false
+  },
 ];
+
 
 // Array of Resolvers for ApolloServer Constructor
 const resolvers = {
