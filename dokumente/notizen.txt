@@ -98,7 +98,7 @@ Lodash
 
 	JS framework for common programming tasks using functional programming paradigms
 
-	- Convience für Arrays, Objects, Strings, Numbers
+	- Convenience für Arrays, Objects, Strings, Numbers
 
 	Arrayfunktionen (Auswahl)
 
