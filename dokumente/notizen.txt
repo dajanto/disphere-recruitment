@@ -1,3 +1,7 @@
+
+disphere
+	- Entwickler für Apps, Websites und E-Commerce
+
 1. 
 
 GET
@@ -15,24 +19,26 @@ GraphQL
 
 	Query Language für POST-Anfragen an eine API
 
-	Mit einer Anfrage kann bestimmt werden, was genau an Daten returnt werden soll
-	Zuvor wird Serversided festgelegt, welches Type System genutzt wird
-	Der Service läuft typischerweise auf einer URL, es wird geprüft, ob die Anfrage den definierten Werten entspricht
-	Wenn alles glatt läuft, erhält man ein entsprechendes JSON-Result
+	- Passgenaue Anfragen 
+	- Serverseitig festgelegtes Typ-System
+	- Üblicherweise via URL laufend
+	- JSON-Output
 
 	Meinung:
 
-	- Mit modernen Frameworks können Data Fetching Probleme effizienter gelöst werden als mit der herkömmlichen REST-Architektur. 
-	- In dem einen Tutorial um eine Blogging-Website, wo jeweils Anfragen für User, Posts und Follower einzeln gestellt werden mussten, um die Daten anschließend zu verarbeiten.
-	- Bei GraphQL muss man für denselben Fall bloß nur eine Anfrage stellen und man kann genau spezifizieren, welche Daten returnt werden sollen.
+	- Data Fetching Probleme effizienter lösbar als mit REST 
+	- Flexibler als ältere Technologien
+	- An heutige Probleme angepasst
+
+	- Blogging-Website-Beispiel 
+		- Für User, Posts, Follower jeweils eine Anfrage
+		- Bei GraphQL nur eine Anfrage
 
 	Weitere Vorteile:
-		- Backend Statistiken können genau nutzerweise aufgestellt und analysiert werden
-		- Client-Side Changes sind ohne weitere Backend-Änderungen umsetzbar
-
+		- Backend Statistiken extrahierbar
+		- Client-Side Changes einfach umsetzbar
 
 	SOAP (Protokoll) ist outdated, weil es z.B. nur mit XML umgehen kann, REST hat es weitestgehend abgelöst
-
 
 
 Angular
@@ -71,21 +77,21 @@ Angular
 
 	Input
 
-		// TODO
-		
 		Neue Komponente wird erstellt (Mit selector, templates and styles)
 
 		Ein Produkt mit Wert ab 700 soll einen Notify Button erhalten
 
+		Die Product Alert Component nimmt als Input ein Produkt und schaut sich den Preis 
+		PAC ist ein Child der Product List
+
 
 	Output
-
-		// TODO
+	
+		Die Product Alert Component muss noch ein Event emitten und die Product List muss entsprechend reagieren
 
 		share() --> window.alert("foo")
 		onNotify() --> window.alert("bar")
 
-	
 
 Lodash
 
