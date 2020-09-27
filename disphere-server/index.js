@@ -1,41 +1,49 @@
 const { ApolloServer, gql } = require('apollo-server');
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
 const typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Book {
-    title: String
-    author: String
+  type car {
+    brand: String
+	model: String
+    color: AllowedColor
+    enginepower: Int
+    hasTrailHitch: Boolean
   }
 
-  # The "Query" type is special: it lists all of the available queries that
-  # clients can execute, along with the return type for each. In this
-  # case, the "books" query returns an array of zero or more Books (defined above).
+  enum AllowedColor {
+		RED
+		GREEN
+		BLUE
+	}
+
   type Query {
-    books: [Book]
+	favoriteColor: AllowedColor
+    cars: [car]
   }
 `;
 
-const books = [
+// Array instead of DB
+const cars = [
   {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
+    brand: 'VW',
+	model: 'Polo',
+    color: 'RED',
+    enginepower: 90,
+    hasTrailHitch: false
   },
   {
-    title: 'City of Glass',
-    author: 'Paul Auster',
+    brand: 'Lamborghini',
+	model: 'Huracan',
+    color: 'BLUE',
+    enginepower: 300,
+    hasTrailHitch: true
   },
 ];
 
-// Resolvers define the technique for fetching the types defined in the
-// schema. This resolver retrieves books from the "books" array above.
+// Array of Resolvers for ApolloServer Constructor
 const resolvers = {
   Query: {
-    books: () => books,
+    cars: () => cars,
   },
 };
 
