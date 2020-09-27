@@ -35,10 +35,11 @@ GraphQL
 		- Bei GraphQL nur eine Anfrage
 
 	Weitere Vorteile:
-		- Backend Statistiken extrahierbar
+		- Serverseitig Statistiken extrahierbar
 		- Client-Side Changes einfach umsetzbar
 
 	SOAP (Protokoll) ist outdated, weil es z.B. nur mit XML umgehen kann, REST hat es weitestgehend abgelöst
+	Architektur bietet mehr Freiheiten
 
 
 Angular
@@ -95,5 +96,15 @@ Angular
 
 Lodash
 
-	Convenience JS framework for common programming tasks using functional programming paradigms
+	JS framework for common programming tasks using functional programming paradigms
+
+	- Convience für Arrays, Objects, Strings, Numbers
+
+	Arrayfunktionen (Auswahl)
+
+		- chunk (Splits AR into chunks)
+		- concat (Concats X ARs or values)
+		- flatten (Flatten AR with X AR in it)
+		
+
 
