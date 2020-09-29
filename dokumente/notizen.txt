@@ -22,7 +22,6 @@ GraphQL
 
 	- Passgenaue Anfragen 
 	- Serverseitig festgelegtes Typ-System
-	- Üblicherweise via URL laufend
 	- JSON-Output
 
 	Meinung:
@@ -49,6 +48,13 @@ Angular
 
 	Tutorial 
 
+	Basics 
+		- *ngFor
+		- *ngIf
+		- Interpolation {{ }}
+		- Property Binding [ ]
+		- Event Binding ( )
+
 	Template
 		- Anhand eines Webshops wurden verschiedene Features gezeigt, die man in HTML Tags integrieren kann
 		- Produkte sollten angezeigt werden mit *ngFor im <div> (Iterate over predefined list)
@@ -57,19 +63,10 @@ Angular
 		- <p *ngIf> mit {{product.description}}, dass eine Description angezeigt wird, wenn es eine gibt
 		- <button (click)="share()"> zum Erstellen eines Buttons zum Sharen von Informationen
 
-
-		Basics 
-			- *ngFor
-			- *ngIf
-			- Interpolation {{ }}
-			- Property Binding [ ]
-			- Event Binding ( )
-
 	Component		
 		- Component class (data and functionality (share()))
 		- Template class (UI stuff)
 		- Component specific styles (CSS stuff)
-
 
 	Der Webshop hat drei Komponenten
 		- app-root	
