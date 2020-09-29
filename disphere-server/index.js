@@ -1,22 +1,19 @@
+
 const { ApolloServer, gql } = require('apollo-server');
 
+// A schema is a collection of type definitions (hence "typeDefs")
+// that together define the "shape" of queries that are executed against
+// your data.
 const typeDefs = gql`
 
   type Car {
     brand: String
 	model: String
-    color: AllowedColors
+    color: String
     enginepower: Int
     hasTrailHitch: Boolean
   }
 
-  enum AllowedColors {
-		RED
-		GREEN
-		BLUE
-	}
-
-// Query entry points
   type Query {
     cars: [Car]
   }
@@ -29,26 +26,24 @@ const cars = [
 	model: 'Polo',
     color: 'RED',
     enginepower: 90,
-    hasTrailHitch: false
+    hasTrailHitch: false,
   },
   {
     brand: 'Lamborghini',
 	model: 'Huracan',
     color: 'BLUE',
     enginepower: 300,
-    hasTrailHitch: true
+    hasTrailHitch: true,
   },
   {
     brand: 'Fiat',
 	model: 'Panda',
     color: 'GREEN',
     enginepower: 50,
-    hasTrailHitch: false
+    hasTrailHitch: false,
   },
 ];
 
-
-// Array of Resolvers for ApolloServer Constructor
 const resolvers = {
   Query: {
     cars: () => cars,
@@ -64,4 +59,3 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
-
