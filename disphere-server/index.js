@@ -1,7 +1,6 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require('./schema');
-const mongoose = require('mongoose');
 
 const app = express();
 
@@ -16,6 +15,6 @@ app.use('/graphql', graphqlHTTP({
 
 }));
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+app.listen(4000, () => {
+  console.log('🚀  Server ready');
 });

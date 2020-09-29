@@ -66,7 +66,7 @@ const drivers = [
 		color: {type:GraphQLString},
 		enginepower: {type:GraphQLInt},
 		hasTrailHitch: {type:GraphQLBoolean},
-		drivers: {type: new GraphQLList(Driver),
+		drivers: {type: new GraphQLList(DriverType),
 		resolve(parent,args) {
 			return _.filter(drivers,{driver,parent})
 		}
@@ -106,6 +106,8 @@ const RootQuery = new graphql.GraphQLObjectType({
                 return drivers;
             }
         }
+        }
+        })
 
 module.exports = new GraphQLSchema({
 
