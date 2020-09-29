@@ -1,61 +1,21 @@
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema');
+const mongoose = require('mongoose');
 
-const { ApolloServer, gql } = require('apollo-server');
+const app = express();
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
+//connect to mlab DB
+//mongoose.connect('mongo "mongodb+srv://cluster0.qzs8d.mongodb.net/Cluster0" --username admin')
 
-  type Car {
-    brand: String
-	model: String
-    color: String
-    enginepower: Int
-    hasTrailHitch: Boolean
-  }
+app.use('/graphql', graphqlHTTP({
 
-  type Query {
-    cars: [Car]
-  }
-`;
+    schema,
 
-// Array instead of DB
-const cars = [
-  {
-    brand: 'VW',
-	model: 'Polo',
-    color: 'RED',
-    enginepower: 90,
-    hasTrailHitch: false,
-  },
-  {
-    brand: 'Lamborghini',
-	model: 'Huracan',
-    color: 'BLUE',
-    enginepower: 300,
-    hasTrailHitch: true,
-  },
-  {
-    brand: 'Fiat',
-	model: 'Panda',
-    color: 'GREEN',
-    enginepower: 50,
-    hasTrailHitch: false,
-  },
-];
+    graphql: true,
 
-const resolvers = {
-  Query: {
-    cars: () => cars,
-  },
-};
+}));
 
-
-// The ApolloServer constructor requires two parameters: your schema
-// definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
-
-// The `listen` method launches a web server.
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
