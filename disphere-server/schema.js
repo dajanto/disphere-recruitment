@@ -101,7 +101,7 @@ const RootQuery = new graphql.GraphQLObjectType({
 
         drivers: {
             type: new GraphQLList(DriverType),
-            resolve(parents, args) {
+            resolve(parent, args) {
                 return drivers;
             }
         }
