@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const graphql = require('graphql');
-const { GrapQLObjectType, GraphQLBoolean, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
+const { GraphQLNonNull, GrapQLObjectType, GraphQLBoolean, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
 
 const cars = [
   {
@@ -10,6 +10,7 @@ const cars = [
     color: 'RED',
     enginepower: 90,
     hasTrailHitch: false,
+	drivers: [16,17]
   },
   {
 	id: '1338',
@@ -18,6 +19,7 @@ const cars = [
     color: 'BLUE',
     enginepower: 300,
     hasTrailHitch: true,
+	drivers: [17]
   },
   {
 	id: '1339',
@@ -26,6 +28,7 @@ const cars = [
     color: 'GREEN',
     enginepower: 50,
     hasTrailHitch: false,
+	drivers: [16,18]
   },
 ];
 
@@ -52,12 +55,11 @@ const drivers = [
 	fields: () => ({ 
 		id: {type:GraphQLID},
 		name: {type:GraphQLString},
-		age: {type:GraphQLInt} ,
+		age: {type:GraphQLInt},
 	})
   });
 
   const CarType = new graphql.GraphQLObjectType({
-
 	name: 'Car',
 	fields: () => ({ 
 		id: {type:GraphQLID},
@@ -66,27 +68,29 @@ const drivers = [
 		color: {type:GraphQLString},
 		enginepower: {type:GraphQLInt},
 		hasTrailHitch: {type:GraphQLBoolean},
-		drivers: {type: new GraphQLList(DriverType),
-		resolve(parent,args) {
-			return _.filter(drivers,{driver,parent})
-		}
-		}
+		drivers: {type: new GraphQLList(DriverType)},
 	})
   });
 
 const RootQuery = new graphql.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        car: {
-            type: CarType,
-            args: { id: { type: GraphQLID } },
-            resolve(parent, args) {
 
-                // code to get Data from db/ other source
-                console.log(typeof(args.id));
-                return _.find(cars, { id: args.id });
+        cars: {
+            type: new GraphQLList(CarType),
+            resolve(parent, args) {
+                return cars
             }
         },
+
+		car: {
+		  type: CarType,
+          args: { id: { type: GraphQLID } },
+            resolve(parent, args) {
+                return _.find(cars, { id: args.id })
+				}
+			},
+
         driver: {
             type: DriverType,
             args: { id: { type: GraphQLID } },
@@ -94,12 +98,7 @@ const RootQuery = new graphql.GraphQLObjectType({
                 return _.find(drivers, { id: args.id });
             }
         },
-        cars: {
-            type: new GraphQLList(CarType),
-            resolve(parent, args) {
-                return cars
-            }
-        },
+
         drivers: {
             type: new GraphQLList(DriverType),
             resolve(parents, args) {
