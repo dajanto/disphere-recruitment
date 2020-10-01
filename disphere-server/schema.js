@@ -7,7 +7,7 @@ const cars = [
 	id: '1337',
     brand: 'VW',
 	model: 'Polo',
-    //color: new RGBColorType(1,2,3),
+	category: 1,
     color: 'RED',
     enginepower: 90,
     hasTrailHitch: false,
@@ -17,6 +17,7 @@ const cars = [
     id: '1338',
     brand: 'Lamborghini',
     model: 'Huracan',
+	category: 2,
     color: 'BLUE',
     enginepower: 300,
     hasTrailHitch: true,
@@ -24,8 +25,9 @@ const cars = [
   },
   {
     id: '1339',
-    brand: 'Fiat',
+    brand: 'FIAT',
     model: 'Panda',
+	category: 1,
     color: 'GREEN',
     enginepower: 50,
     hasTrailHitch: false,
@@ -51,13 +53,19 @@ const drivers = [
   },
 ];
  
-const RGBColorType = new GraphQLEnumType({
-  name: 'RGBColor',
+const CategoryType = new GraphQLEnumType({
+  name: 'Category',
   values: {
-    RED: { value: GraphQLInt },
-    GREEN: { value: GraphQLInt },
-    BLUE: { value: GraphQLInt },
-  }
+    Kleinwagen: {
+      value: 0,
+    },
+    Universal: {
+      value: 1,
+    },
+    Supersportwagen: {
+      value: 2,
+    },
+	}
 });
 
   const DriverType = new graphql.GraphQLObjectType({
@@ -75,7 +83,7 @@ const RGBColorType = new GraphQLEnumType({
 		id: {type:GraphQLID},
 		brand: {type:GraphQLString},
 		model: {type:GraphQLString},
-		//color: {type:RGBColorType},
+		category: {type:CategoryType},
 		color: {type:GraphQLString},
 		enginepower: {type:GraphQLInt},
 		hasTrailHitch: {type:GraphQLBoolean},
