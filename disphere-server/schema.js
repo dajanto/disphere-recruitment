@@ -1,34 +1,35 @@
 const { ApolloServer, gql } = require('apollo-server');
 const graphql = require('graphql');
-const { GraphQLNonNull, GrapQLObjectType, GraphQLBoolean, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
+const { GraphQLEnumType, GraphQLNonNull, GrapQLObjectType, GraphQLBoolean, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
 
 const cars = [
   {
 	id: '1337',
     brand: 'VW',
 	model: 'Polo',
+    //color: new RGBColorType(1,2,3),
     color: 'RED',
     enginepower: 90,
     hasTrailHitch: false,
 	drivers: [16,17]
   },
   {
-	id: '1338',
+    id: '1338',
     brand: 'Lamborghini',
-	model: 'Huracan',
+    model: 'Huracan',
     color: 'BLUE',
     enginepower: 300,
     hasTrailHitch: true,
-	drivers: [17]
+    drivers: [17]
   },
   {
-	id: '1339',
+    id: '1339',
     brand: 'Fiat',
-	model: 'Panda',
+    model: 'Panda',
     color: 'GREEN',
     enginepower: 50,
     hasTrailHitch: false,
-	drivers: [16,18]
+    drivers: [16,18]
   },
 ];
 
@@ -49,13 +50,22 @@ const drivers = [
 	age: 66,
   },
 ];
+ 
+const RGBColorType = new GraphQLEnumType({
+  name: 'RGBColor',
+  values: {
+    RED: { value: GraphQLInt },
+    GREEN: { value: GraphQLInt },
+    BLUE: { value: GraphQLInt },
+  }
+});
 
   const DriverType = new graphql.GraphQLObjectType({
 	name: 'Driver',
 	fields: () => ({ 
-		id: {type:GraphQLID},
-		name: {type:GraphQLString},
-		age: {type:GraphQLInt},
+		id: {type: GraphQLID },
+		name: {type: GraphQLString},
+		age: {type: GraphQLInt},
 	})
   });
 
@@ -65,14 +75,15 @@ const drivers = [
 		id: {type:GraphQLID},
 		brand: {type:GraphQLString},
 		model: {type:GraphQLString},
+		//color: {type:RGBColorType},
 		color: {type:GraphQLString},
 		enginepower: {type:GraphQLInt},
 		hasTrailHitch: {type:GraphQLBoolean},
 		drivers: {type: new GraphQLList(DriverType)},
 	})
-  });
-
-const RootQuery = new graphql.GraphQLObjectType({
+  }); 
+  
+ const RootQuery = new graphql.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
 
@@ -111,4 +122,5 @@ const RootQuery = new graphql.GraphQLObjectType({
 module.exports = new GraphQLSchema({
 
     query: RootQuery
+
 });
