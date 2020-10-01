@@ -124,12 +124,16 @@ const CategoryType = new GraphQLEnumType({
 
         drivers: {
             type: new GraphQLList(DriverType),
+            args: { id: { type: GraphQLID } },
             resolve(parent, args) {
+				if(args.id) {
+					return drivers.filter(driver => driver.id === args.id)	
+				}
                 return drivers;
             }
         }
-        }
-        })
+	}
+})
 
 module.exports = new GraphQLSchema({
 
