@@ -97,8 +97,12 @@ const CategoryType = new GraphQLEnumType({
 
         cars: {
             type: new GraphQLList(CarType),
+			args: { id: { type: GraphQLID } },
             resolve(parent, args) {
-                return cars
+				if(args.id) {
+					return cars.filter(car => car.id === args.id)	
+				}
+				return cars
             }
         },
 
