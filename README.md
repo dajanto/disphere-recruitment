@@ -1,7 +1,11 @@
 # disphere-recruitment
 
-Starting the server at localhost:4000:
+Client:  
+http://localhost:4200  
 
-cd disphere-server
+Server:  
+http://localhost:4000/graphql  
 
-node index.js
+Nach dem Klonen in disphere-client ggf.:  
+npm install --save-dev @angular-devkit/build-angular  
+
