@@ -12,23 +12,27 @@ import { shareReplay,map } from 'rxjs/operators';
 export class CarsOnDemandComponent implements OnInit {
 
 	ids$: Observable<any[]>;
+	loading$: Observable<boolean>;
+  	errors$: Observable<any>;
 
   constructor(private apollo: Apollo) { }
 
   ngOnInit(): void {
+
 	  const source$ = this.apollo.query({
 		query: gql`	
 		{
 			cars {
 				id
+				enginepower
 			}
 		}`
 	  }).pipe(shareReplay(1));
 
-    //this.ids$ = source$.pipe(map(result => result.data && result.data.ids));
-    this.ids$ = source$.pipe(map(result => result.data.ids));
+	  console.log(source$);
 
-	// Debug
-	//window.alert(source$.data);
+	//this.ids$ = source$.pipe(map(result => result.data && result.data.ids));
+    this.loading$ = source$.pipe(map(result => result.loading));
+    this.errors$ = source$.pipe(map(result => result.errors));
 }
 }

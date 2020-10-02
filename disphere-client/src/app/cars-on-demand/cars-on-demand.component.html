@@ -1,10 +1,13 @@
 <p>cars-on-demand nearly works!</p>
 
+<div *ngIf="loading$ | async">
+  Loading...
+</div>
+
+<div *ngIf="errors$ | async">
+  Error :(
+</div>
+
 <div *ngFor="let id of ids$ | async">
-  <p>{{ids.id}}</p>
-  <p>{{ids.id}}</p>
-  <p>{{ids.id}}</p>
-  <p>{{id.id}}</p>
-  <p>{{id.ids}}</p>
-  <p>{{ids}}</p>
+  <p>{{id.enginepower}}: {{id.id}}</p>
 </div>
