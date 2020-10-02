@@ -31,7 +31,7 @@ export class CarsOnDemandComponent implements OnInit {
 
 	  console.log(source$);
 
-	//this.ids$ = source$.pipe(map(result => result.data && result.data.ids));
+	this.ids$ = source$.pipe(map(result => result.data && result.data.ids));
     this.loading$ = source$.pipe(map(result => result.loading));
     this.errors$ = source$.pipe(map(result => result.errors));
 }
