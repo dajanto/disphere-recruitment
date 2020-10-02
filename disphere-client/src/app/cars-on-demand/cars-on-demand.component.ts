@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { shareReplay,map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-cars-on-demand',
+  selector: 'app-root',
   templateUrl: './cars-on-demand.component.html',
   styleUrls: ['./cars-on-demand.component.css']
 })
@@ -33,6 +32,6 @@ export class CarsOnDemandComponent implements OnInit {
 				drivers
 			}
 		}`
-	  }).pipe(shareReplay(1));
+	  }).subscribe();
   }
 }
