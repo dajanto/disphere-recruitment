@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { shareReplay,map } from 'rxjs/operators';
+import { shareReplay,map,pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'cars-on-demand',
@@ -29,10 +29,10 @@ export class CarsOnDemandComponent implements OnInit {
 		}`
 	  }).pipe(shareReplay(1));
 
-	  console.log(source$);
+	this.ids$ = source$.pipe(pluck('data','cars'));
 
-	this.ids$ = source$.pipe(map(result => result.data && result.data.ids));
     this.loading$ = source$.pipe(map(result => result.loading));
+
     this.errors$ = source$.pipe(map(result => result.errors));
 }
 }
