@@ -7,44 +7,51 @@
   Error :(
 </div>
 
-<!--<table mat-table *ngFor="let id of ids$ | async" class="mat-elevation-z8" >-->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-<!--<table mat-table *ngFor="let id of dataSource" class="mat-elevation-z8">-- >
+<div *ngFor="let id of ids$ | async">
+  {{id.id}}
+</div>
+
+<!--<mat-card *ngFor"let id of ids$ | async">
+	simple
+	{{id.id}}
+</mat-card>-->
+
+<table mat-table *ngFor="let id of ids$ | async" class="mat-elevation-z8">
 
 	<!-- Column ID -->
 	<ng-container matColumnDef="id">
-		<th mat-header-cell *matHeaderCellDef> ID </th>
-		<td mat-cell *matCellDef="let id"> {{id.id}} </td>
+		<th mat-header-cell *matHeaderCellDef>ID</th>
+		<td mat-cell> {{id.id}} </td>
 	</ng-container>
 
 	<!-- Column Brand -->
 	<ng-container matColumnDef="brand">
 		<th mat-header-cell *matHeaderCellDef>Brand</th>
-		<td mat-cell *matCellDef="let id"> {{id.brand}} </td>
+		<td mat-cell> {{id.brand}} </td>
 	</ng-container>
 
 	<!-- Column Model -->
 	<ng-container matColumnDef="model">
 		<th mat-header-cell *matHeaderCellDef>Model</th>
-		<td mat-cell *matCellDef="let id"> {{id.model}} </td>
+		<td mat-cell> {{id.model}} </td>
 	</ng-container>
 
 	<!-- Column Category -->
 	<ng-container matColumnDef="category">
 		<th mat-header-cell *matHeaderCellDef>Category</th>
-		<td mat-cell *matCellDef="let id"> {{id.category}} </td>
+		<td mat-cell> {{id.category}} </td>
 	</ng-container>
 
 	<!-- Column Color-->
 	<ng-container matColumnDef="color">
 		<th mat-header-cell *matHeaderCellDef>Color</th>
-		<td mat-cell *matCellDef="let id"> {{id.color}} </td>
+		<td mat-cell> {{id.color}} </td>
 	</ng-container>
 
 	<!-- Column Engine Power -->
 	<ng-container matColumnDef="enginepower">
-		<th mat-header-cell *matHeaderCellDef> Engine Power </th>
-		<td mat-cell *matCellDef="let id"> {{id.enginepower}} </td>
+		<th mat-header-cell *matHeaderCellDef>Engine Power</th>
+		<td mat-cell> {{id.enginepower}} </td>
 	</ng-container>
 
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

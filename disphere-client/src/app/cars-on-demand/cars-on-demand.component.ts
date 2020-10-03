@@ -47,6 +47,5 @@ export class CarsOnDemandComponent implements OnInit {
 	displayedColumns: string[] = ['id','brand','model','category','color','enginepower'];
 
 	// Table Data Source 
-	//dataSource = this.ids$;
-	dataSource = this.displayedColumns;
+	//dataSource = this.displayedColumns;
 }
