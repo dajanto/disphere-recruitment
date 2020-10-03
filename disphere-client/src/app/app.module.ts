@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+	MatTableModule,
     GraphQLModule,
     HttpClientModule
   ],

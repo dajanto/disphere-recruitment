@@ -27,7 +27,7 @@ const cars = [
     id: '1339',
     brand: 'FIAT',
     model: 'Panda',
-	category: 1,
+	category: 0,
     color: 'GREEN',
     enginepower: 50,
     hasTrailHitch: false,

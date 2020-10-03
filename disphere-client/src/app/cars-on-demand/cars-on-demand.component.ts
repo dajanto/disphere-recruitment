@@ -29,7 +29,6 @@ export class CarsOnDemandComponent implements OnInit {
 				category
 				color
 				enginepower
-				hasTrailHitch
 			}
 		}`
 	  }).pipe(shareReplay(1));
@@ -39,5 +38,15 @@ export class CarsOnDemandComponent implements OnInit {
     this.loading$ = source$.pipe(map(result => result.loading));
 
     this.errors$ = source$.pipe(map(result => result.errors));
-}
+
+	}
+
+	// Other Exports
+
+	// Table Column Names
+	displayedColumns: string[] = ['id','brand','model','category','color','enginepower'];
+
+	// Table Data Source 
+	//dataSource = this.ids$;
+	dataSource = this.displayedColumns;
 }
