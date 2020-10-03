@@ -24,7 +24,12 @@ export class CarsOnDemandComponent implements OnInit {
 		{
 			cars {
 				id
+				brand
+				model
+				category
+				color
 				enginepower
+				hasTrailHitch
 			}
 		}`
 	  }).pipe(shareReplay(1));

@@ -1,4 +1,3 @@
-<p>cars-on-demand nearly works!</p>
 
 <div *ngIf="loading$ | async">
   Loading...
@@ -8,6 +7,47 @@
   Error :(
 </div>
 
-<div *ngFor="let id of ids$| async">
-  <p>{{id.id}}:{{id.enginepower}}</p>
-</div>
+<table mat-table *ngFor="let id of ids$ | async" class="mat-elevation-z8" >
+
+	<ng-container matColumnDef="id">
+		<th mat-header-cell *matHeaderCellDef> ID </th>
+		<td mat-cell> {{id.id}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Brand">
+		<th mat-header-cell *matHeaderCellDef>Brand</th>
+		<td mat-cell> {{id.brand}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Model">
+		<th mat-header-cell *matHeaderCellDef>Model</th>
+		<td mat-cell> {{id.model}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Category">
+		<th mat-header-cell *matHeaderCellDef>Category</th>
+		<td mat-cell> {{id.category}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Color">
+		<th mat-header-cell *matHeaderCellDef>Color</th>
+		<td mat-cell> {{id.color}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Engine Power">
+		<th mat-header-cell *matHeaderCellDef> Engine Power </th>
+		<td mat-cell> {{id.enginepower}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="Has Trail Hitch">
+		<th mat-header-cell *matHeaderCellDef>Has Trail Hitch</th>
+		<td mat-cell> {{id.hastrailhitch}} </td>
+	</ng-container>
+
+	<!-- Drivers gibt einen Error
+		<ng-container matColumnDef="Has Trail Hitch">
+		<th mat-header-cell *matHeaderCellDef>Has Trail Hitch</th>
+		<td mat-cell> {{id.hastrailhitch}} </td>
+	</ng-container>-->
+</table>
+
