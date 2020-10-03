@@ -11,7 +11,7 @@ import { shareReplay,map,pluck } from 'rxjs/operators';
 
 export class CarsOnDemandComponent implements OnInit {
 
-	ids$: Observable<any[]>;
+	cars$: Observable<any[]>;
 	loading$: Observable<boolean>;
   	errors$: Observable<any>;
 
@@ -33,7 +33,7 @@ export class CarsOnDemandComponent implements OnInit {
 		}`
 	  }).pipe(shareReplay(1));
 
-	this.ids$ = source$.pipe(pluck('data','cars'));
+	this.cars$ = source$.pipe(pluck('data','cars'));
 
     this.loading$ = source$.pipe(map(result => result.loading));
 
@@ -45,7 +45,4 @@ export class CarsOnDemandComponent implements OnInit {
 
 	// Table Column Names
 	displayedColumns: string[] = ['id','brand','model','category','color','enginepower'];
-
-	// Table Data Source 
-	//dataSource = this.displayedColumns;
 }
