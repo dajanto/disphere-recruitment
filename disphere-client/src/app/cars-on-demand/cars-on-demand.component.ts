@@ -14,6 +14,7 @@ export class CarsOnDemandComponent implements OnInit {
 	cars$: Observable<any[]>;
 	loading$: Observable<boolean>;
   	errors$: Observable<any>;
+	displayedColumns: string[] = ['id','brand','model','category','color','enginepower'];
 
   constructor(private apollo: Apollo) { }
 
@@ -40,9 +41,4 @@ export class CarsOnDemandComponent implements OnInit {
     this.errors$ = source$.pipe(map(result => result.errors));
 
 	}
-
-	// Other Exports
-
-	// Table Column Names
-	displayedColumns: string[] = ['id','brand','model','category','color','enginepower'];
 }
