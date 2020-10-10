@@ -7,7 +7,7 @@ const cars = [
 	id: '1337',
     brand: 'VW',
 	model: 'Polo',
-	category: 1,
+	category: 2,
     color: 'RED',
     enginepower: 90,
     hasTrailHitch: false,
@@ -17,7 +17,7 @@ const cars = [
     id: '1338',
     brand: 'Lamborghini',
     model: 'Huracan',
-	category: 2,
+	category: 3,
     color: 'BLUE',
     enginepower: 300,
     hasTrailHitch: true,
@@ -27,7 +27,7 @@ const cars = [
     id: '1339',
     brand: 'FIAT',
     model: 'Panda',
-	category: 0,
+	category: 1,
     color: 'GREEN',
     enginepower: 50,
     hasTrailHitch: false,
@@ -57,13 +57,13 @@ const CategoryType = new GraphQLEnumType({
   name: 'Category',
   values: {
     Kleinwagen: {
-      value: 0,
-    },
-    Universal: {
       value: 1,
     },
-    Supersportwagen: {
+    Universal: {
       value: 2,
+    },
+    Supersportwagen: {
+      value: 3,
     },
 	}
 });
@@ -97,13 +97,21 @@ const CategoryType = new GraphQLEnumType({
 
         cars: {
             type: new GraphQLList(CarType),
-			args: { id: { type: GraphQLID } },
+			args: { id: {type : GraphQLID}, category: {type: CategoryType} },
+
             resolve(parent, args) {
+
 				if(args.id) {
 					return cars.filter(car => car.id === args.id)	
+				} 
+
+				if(args.category) {
+					console.log(args);
+					return cars.filter(car => car.category === args.category)	
 				}
-				return cars
-            }
+
+				//return cars
+            },
         },
 
 		car: {
