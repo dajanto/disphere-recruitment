@@ -42,16 +42,21 @@ const drivers = [
 	id: '16',
 	name: 'Patrick Rothfuss',
 	age: 44,
+	cars: [{id:1337},
+		   {id:1339}]
   },
   {
 	id: '17',
 	name: 'Brandon Sanderson',
 	age: 42,
+	cars: [{id:1337},
+		   {id:1338}]
   },
   {
 	id: '18',
 	name: 'Terry Pratchett',
 	age: 66,
+	cars: [{id:1339}]
   },
 ];
  
@@ -76,6 +81,7 @@ const CategoryType = new GraphQLEnumType({
 		id: {type: GraphQLID },
 		name: {type: GraphQLString},
 		age: {type: GraphQLInt},
+		cars: {type: new GraphQLList(CarType)}
 	})
   });
 
@@ -121,9 +127,8 @@ const CategoryType = new GraphQLEnumType({
 
 				resolve(parent, args) {
 
-					return _.find(cars, { id: args.id })
+					return cars.find(cars, { id: args.id })
 				}
-
 			},
 
         driver: {
