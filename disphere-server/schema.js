@@ -138,14 +138,14 @@ const CategoryType = new GraphQLEnumType({
 
 				resolve(parent, args) {
 
-					return _.find(drivers, { id: args.id });
+					return cars.find(drivers, { id: args.id });
 				}
         },
 
         drivers: {
 
             type: new GraphQLList(DriverType),
-            args: { id: { type: GraphQLID } },
+            args: { id: { type: GraphQLID }, car: { type: GraphQLID }},
 
             resolve(parent, args) {
 				
@@ -153,6 +153,12 @@ const CategoryType = new GraphQLEnumType({
 					return drivers.filter(driver => driver.id === args.id)	
 				}
 				
+				if(args.car) {
+					
+					// TODO driver.cars.id === args.id
+					return drivers.filter(driver => driver.age > 20)
+				}
+
 				return drivers;
             }
         }
