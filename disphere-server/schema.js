@@ -3,79 +3,75 @@ const graphql = require('graphql');
 const { GraphQLEnumType, GraphQLNonNull, GrapQLObjectType, GraphQLBoolean, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList } = graphql;
 
 const cars = [
-  {
-	id: '1337',
-    brand: 'VW',
-	model: 'Polo',
-	category: 2,
-    color: 'RED',
-    enginepower: 90,
-    hasTrailHitch: false,
-	drivers: [{id: '16',name:'Patrick Rothfuss',age:44},
-			  {id: '17',name:'Brandon Sanderson',age:42}]
-  },
-  {
-    id: '1338',
-    brand: 'Lamborghini',
-    model: 'Huracan',
-    category: 3,
-    color: 'BLUE',
-    enginepower: 300,
-    hasTrailHitch: true,
-    drivers: [{id: '17',name:'Brandon Sanderson',age:42}]
-  },
-  {
-    id: '1339',
-    brand: 'FIAT',
-    model: 'Panda',
-    category: 1,
-    color: 'GREEN',
-    enginepower: 50,
-    hasTrailHitch: false,
-	drivers: [{id: '16',name:'Patrick Rothfuss',age:44},
-			  {id: '18', name: 'Terry Pratchett', age: 66}]
-  },
+	{
+		id: '1337',
+		brand: 'VW',
+		model: 'Polo',
+		category: 2,
+		color: 'RED',
+		enginepower: 90,
+		hasTrailHitch: false,
+		drivers: [{id: '16',name:'Patrick Rothfuss',age:44}, {id: '17',name:'Brandon Sanderson',age:42}]
+	},
+	{
+		id: '1338',
+		brand: 'Lamborghini',
+		model: 'Huracan',
+		category: 3,
+		color: 'BLUE',
+		enginepower: 300,
+		hasTrailHitch: true,
+		drivers: [{id: '17',name:'Brandon Sanderson',age:42}]
+	},
+	{
+		id: '1339',
+		brand: 'FIAT',
+		model: 'Panda',
+		category: 1,
+		color: 'GREEN',
+		enginepower: 50,
+		hasTrailHitch: false,
+		drivers: [{id: '16',name:'Patrick Rothfuss',age:44}, {id: '18', name: 'Terry Pratchett', age: 66}]
+	},
 ];
 
 const drivers = [
-  {
-	id: '16',
-	name: 'Patrick Rothfuss',
-	age: 44,
-	cars: [{id:1337},
-		   {id:1339}]
-  },
-  {
-	id: '17',
-	name: 'Brandon Sanderson',
-	age: 42,
-	cars: [{id:1337},
-		   {id:1338}]
-  },
-  {
-	id: '18',
-	name: 'Terry Pratchett',
-	age: 66,
-	cars: [{id:1339}]
-  },
+	{
+		id: '16',
+		name: 'Patrick Rothfuss',
+		age: 44,
+		cars: [{id:1337},{id:1339}]
+	},
+	{
+		id: '17',
+		name: 'Brandon Sanderson',
+		age: 42,
+		cars: [{id:1337},{id:1338}]
+	},
+	{
+		id: '18',
+		name: 'Terry Pratchett',
+		age: 66,
+		cars: [{id:1339}]
+	},
 ];
- 
+
 const CategoryType = new GraphQLEnumType({
-  name: 'Category',
-  values: {
-    Kleinwagen: {
-      value: 1,
-    },
-    Universal: {
-      value: 2,
-    },
-    Supersportwagen: {
-      value: 3,
-    },
+	name: 'Category',
+	values: {
+		Kleinwagen: {
+			value: 1,
+		},
+		Universal: {
+			value: 2,
+		},
+		Supersportwagen: {
+			value: 3,
+		},
 	}
 });
 
-  const DriverType = new graphql.GraphQLObjectType({
+const DriverType = new graphql.GraphQLObjectType({
 	name: 'Driver',
 	fields: () => ({ 
 		id: {type: GraphQLID },
@@ -83,9 +79,9 @@ const CategoryType = new GraphQLEnumType({
 		age: {type: GraphQLInt},
 		cars: {type: new GraphQLList(CarType)}
 	})
-  });
+});
 
-  const CarType = new graphql.GraphQLObjectType({
+const CarType = new graphql.GraphQLObjectType({
 	name: 'Car',
 	fields: () => ({ 
 		id: {type:GraphQLID},
@@ -97,17 +93,17 @@ const CategoryType = new GraphQLEnumType({
 		hasTrailHitch: {type:GraphQLBoolean},
 		drivers: {type: new GraphQLList(DriverType)},
 	})
-  }); 
-  
- const RootQuery = new graphql.GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
+}); 
 
-        cars: {
-            type: new GraphQLList(CarType),
+const RootQuery = new graphql.GraphQLObjectType({
+	name: 'RootQueryType',
+	fields: {
+
+		cars: {
+			type: new GraphQLList(CarType),
 			args: { id: {type : GraphQLID}, category: {type: CategoryType} },
 
-            resolve(parent, args) {
+			resolve(parent, args) {
 
 				if(args.id) {
 					return cars.filter(car => car.id === args.id)	
@@ -118,55 +114,55 @@ const CategoryType = new GraphQLEnumType({
 				}
 
 				return cars
-            },
-        },
+			},
+		},
 
 		car: {
-		  type: CarType,
-          args: { id: { type: GraphQLID } },
+			type: CarType,
+			args: { id: { type: GraphQLID } },
 
-				resolve(parent, args) {
+			resolve(parent, args) {
 
-					return cars.find(cars, { id: args.id })
-				}
-			},
+				return cars.find(cars, { id: args.id })
+			}
+		},
 
-        driver: {
+		driver: {
 
-            type: DriverType,
-            args: { id: { type: GraphQLID } },
+			type: DriverType,
+			args: { id: { type: GraphQLID } },
 
-				resolve(parent, args) {
+			resolve(parent, args) {
 
-					return cars.find(drivers, { id: args.id });
-				}
-        },
+				return cars.find(drivers, { id: args.id });
+			}
+		},
 
-        drivers: {
+		drivers: {
 
-            type: new GraphQLList(DriverType),
-            args: { id: { type: GraphQLID }, car: { type: GraphQLID }},
+			type: new GraphQLList(DriverType),
+			args: { id: { type: GraphQLID }, car: { type: GraphQLID }},
 
-            resolve(parent, args) {
-				
+			resolve(parent, args) {
+
 				if(args.id) {
 					return drivers.filter(driver => driver.id === args.id)	
 				}
-				
+
 				if(args.car) {
-					
+
 					// TODO driver.cars.id === args.id
 					return drivers.filter(driver => driver.age > 20)
 				}
 
 				return drivers;
-            }
-        }
+			}
+		}
 	}
 })
 
 module.exports = new GraphQLSchema({
 
-    query: RootQuery
+	query: RootQuery
 
 });
