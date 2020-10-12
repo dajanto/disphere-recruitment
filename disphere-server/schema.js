@@ -151,11 +151,63 @@ const RootQuery = new graphql.GraphQLObjectType({
 
 				if(args.car) {
 
-					// TODO driver.cars.id === args.id
-					return drivers.filter(driver => driver.age > 20)
-				}
+					//let arr = [
+					//	{ name:"string 1", value:"this", other: "that" },
+					//	{ name:"string 2", value:"this", other: "that" }
+					//];
 
-				return drivers;
+					//let obj = arr.find(o => o.name === 'string 1');
+
+					//console.log(obj.name);
+
+					//console.log(drivers)
+					//let carsofdriver = drivers.find(element => element.cars)
+					//console.log(drivercars)
+					//console.log(drivercars.cars)
+					//
+					//let result = [];
+					//array1.forEach(element => 
+					//	if(element.cars.includes(args.car))
+					//	{
+					//		result.push(element.id);
+					//	});
+
+					// TODO 
+
+					let result;
+					for (element of drivers) {
+
+						console.log("element")
+						console.log(element)
+						console.log("element cars")
+						console.log(element.cars)
+
+						let ec = element.cars
+						
+						console.log(ec.includes(args.car))
+						if(ec.includes(args.car)) {
+							
+							console.log("ja");
+
+						} else {
+
+							console.log("nein");
+						}
+
+						//let elementcarsobject = elementcars.find(o => o.id === args.car)
+
+						//console.log("asdlkfjadsjlfkjlkadfjlkjlkdfljkfdlkjsa")
+						//console.log(elementcarsobject.id)
+
+						//if(true)
+						//{
+						//	result.push(elementcarsobject.id);
+						//	//result.push(element.id);
+						//} 
+					}
+					return result
+				}
+				return drivers
 			}
 		}
 	}
